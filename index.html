@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- header -->
     <header
         class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
         <div class="px-4">
@@ -36,6 +37,53 @@
             </div>
         </div>
     </header>
+
+    <!-- carousel -->
+    <section class="bg-gray-100 mt-22 py-12">
+        <div x-data="{ activeSlide: 0, slides: 3, timer: null }"
+            x-init="timer = setInterval(() => activeSlide = (activeSlide + 1) % slides, 3000)"
+            class="max-w-3xl mx-auto relative group">
+
+            <div class="relative overflow-hidden rounded-lg shadow-xl">
+                <div class="flex transition-transform duration-500 ease-in-out"
+                    :style="`transform: translateX(-${activeSlide * 100}%)`">
+                    <div class="min-w-full h-64 bg-blue-500 flex items-center justify-center text-white text-4xl">1
+                    </div>
+                    <div class="min-w-full h-64 bg-green-500 flex items-center justify-center text-white text-4xl">2
+                    </div>
+                    <div class="min-w-full h-64 bg-purple-500 flex items-center justify-center text-white text-4xl">3
+                    </div>
+                </div>
+            </div>
+
+            <button @click="activeSlide = (activeSlide - 1 + slides) % slides; clearInterval(timer)"
+                class="absolute top-1/2 left-4 -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2.5 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+
+            <button @click="activeSlide = (activeSlide + 1) % slides; clearInterval(timer)"
+                class="absolute top-1/2 right-4 -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2.5 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                <template x-for="i in slides" :key="i">
+                    <button @click="activeSlide = i - 1; clearInterval(timer)"
+                        class="w-3 h-3 rounded-full transition-colors"
+                        :class="activeSlide === i - 1 ? 'bg-white' : 'bg-white/50'">
+                    </button>
+                </template>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</body>
 </body>
 
 </html>
