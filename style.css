@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h2{
+    margin:50px ;
+    text-align: center;
+     color: rgb(19, 19, 32);
+}
+form{
+    height: fit-content;
+    width: 25%;
+    padding: 2rem;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: auto;
+}
+form input,form button{
+    height: 35px;
+    width: 100%;
+    border: none;
+    background-color: rgb(245, 247, 245);
+    padding-left: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+form button{
+    background-color: green;
+    color: aliceblue;
+}
